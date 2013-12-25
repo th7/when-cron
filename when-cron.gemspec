@@ -4,12 +4,12 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'when/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "when"
+  spec.name          = "when-cron"
   spec.version       = When::VERSION
   spec.authors       = ["TH"]
   spec.email         = ["tylerhartland7@gmail.com"]
-  spec.description   = %q{Oh, we'll see.}
-  spec.summary       = %q{Another unfinished project.}
+  spec.description   = %q{A basic cron implementation.}
+  spec.summary       = %q{A basic cron implementation.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
