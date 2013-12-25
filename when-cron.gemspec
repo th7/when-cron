@@ -1,11 +1,10 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'when/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "when-cron"
-  spec.version       = When::VERSION
+  spec.version       = '0.0.1'
   spec.authors       = ["TH"]
   spec.email         = ["tylerhartland7@gmail.com"]
   spec.description   = %q{A basic cron implementation.}

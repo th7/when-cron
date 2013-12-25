@@ -1,4 +1,5 @@
 require 'spec_helper'
+include When
 
 describe CronPart do
   context 'basic number' do

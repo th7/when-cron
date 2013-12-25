@@ -1,4 +1,5 @@
 require 'spec_helper'
+include When
 
 describe Wildcard do
   describe '#==' do

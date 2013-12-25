@@ -1,4 +1,5 @@
 require 'spec_helper'
+include When
 
 describe Cron do
   let(:now) { Time.new(2013, 6, 15, 12, 30, 30) }

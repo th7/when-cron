@@ -1,4 +1,5 @@
 require 'spec_helper'
+include When
 
 describe CronInterval do
   describe '#==' do

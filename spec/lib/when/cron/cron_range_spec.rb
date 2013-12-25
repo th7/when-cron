@@ -1,4 +1,5 @@
 require 'spec_helper'
+include When
 
 describe CronRange do
   let(:cron_range) { CronRange.new(1, 3) }

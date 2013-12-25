@@ -1,4 +1,5 @@
 require 'spec_helper'
+include When
 
 describe CronArray do
   let(:cron_array) { CronArray.new([1,2,3]) }
