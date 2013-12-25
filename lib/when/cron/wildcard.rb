@@ -1,29 +1,31 @@
-class Wildcard
-  def ==(obj)
-    true
-  end
+module When
+  class Wildcard
+    def ==(obj)
+      true
+    end
 
-  def <=(obj)
-    true
-  end
+    def <=(obj)
+      true
+    end
 
-  def >=(obj)
-    true
-  end
+    def >=(obj)
+      true
+    end
 
-  def <(obj)
-    true
-  end
+    def <(obj)
+      true
+    end
 
-  def >(obj)
-    true
-  end
+    def >(obj)
+      true
+    end
 
-  def first
-    0
-  end
+    def first
+      0
+    end
 
-  def last
-    0
+    def last
+      0
+    end
   end
 end
