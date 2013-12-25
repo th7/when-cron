@@ -1,5 +1,6 @@
-require "when/version"
+Gem.find_files("when/**/*.rb").each { |path| require path }
 
 module When
-  # Your code goes here...
+  def self.start
+  end
 end
