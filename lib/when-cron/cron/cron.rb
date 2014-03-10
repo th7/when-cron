@@ -5,7 +5,7 @@ module When
     end
 
     def ==(time)
-      parse unless parsed?
+      parsed?
       matches = []
       matches << (@minute == time.min)
       matches << (@hour == time.hour)
