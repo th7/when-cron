@@ -5,6 +5,10 @@ module When
       !!(cron =~ /\A((\d|\*|\/|,|-)+ ){4}(\d|\*|\/|,|-)+\z/)
     end
 
+    def self.valid(cron)
+      new(cron) if valid?(cron)
+    end
+
     def initialize(cron)
       @cron = cron
     end

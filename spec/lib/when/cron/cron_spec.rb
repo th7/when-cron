@@ -14,6 +14,20 @@ describe Cron do
     end
   end
 
+  describe '.valid' do
+    context 'a valid cron string is given' do
+      it 'returns a new cron object' do
+        expect(Cron.valid('* * * * *')).to be_kind_of Cron
+      end
+    end
+
+    context 'an invalid cron string is given' do
+      it 'returns nil' do
+        expect(Cron.valid('* * * * * *')).to be_nil
+      end
+    end
+  end
+
   describe '#==' do
     context 'simple cron' do
       let(:cron) { Cron.new('30 12 15 6 6') }
