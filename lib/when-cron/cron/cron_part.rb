@@ -3,10 +3,12 @@ module When
     class InvalidString < StandardError; end
 
     def initialize(cron_part)
+      @cron_part = cron_part
       @part = parse(cron_part)
     end
 
     def ==(int)
+      @part ||= parse(@cron_part)
       @part == int
     end
 
