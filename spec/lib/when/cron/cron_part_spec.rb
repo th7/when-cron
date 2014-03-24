@@ -2,6 +2,12 @@ require 'spec_helper'
 include When
 
 describe CronPart do
+  context 'invalid value' do
+    it 'raises an error' do
+      expect { CronPart.new('a') }.to raise_error
+    end
+  end
+
   context 'basic number' do
     let(:cron_part) { CronPart.new('5') }
 
