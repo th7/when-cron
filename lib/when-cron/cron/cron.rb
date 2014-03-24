@@ -19,6 +19,8 @@ module When
       @wday   == time.wday
     end
 
+    private
+
     def parse(string)
       strings = string.split(' ')
       @minute = CronPart.new(strings[0])
