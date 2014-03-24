@@ -4,6 +4,16 @@ include When
 describe Cron do
   let(:now) { Time.new(2013, 6, 15, 12, 30, 30) }
 
+  describe '.valid?' do
+    it 'returns false for strings it cannot interpret' do
+      expect(Cron.valid?('* * * * a,b')).to be false
+    end
+
+    it 'returns true for cron string it can interpret' do
+      expect(Cron.valid?('* * * * 1')).to be true
+    end
+  end
+
   describe '#==' do
     context 'simple cron' do
       let(:cron) { Cron.new('30 12 15 6 6') }

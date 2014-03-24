@@ -1,11 +1,19 @@
 module When
   class Cron
+    def self.valid?(cron)
+      begin
+        new(cron)
+      rescue When::CronPart::InvalidString
+        return false
+      end
+      true
+    end
+
     def initialize(cron)
-      @cron = cron
+      parse(cron)
     end
 
     def ==(time)
-      parsed?
       matches = []
       matches << (@minute == time.min)
       matches << (@hour == time.hour)
@@ -13,12 +21,6 @@ module When
       matches << (@month == time.month)
       matches << (@wday == time.wday)
       matches.all?
-    end
-
-    private
-
-    def parsed?
-      @parsed ||= parse(@cron)
     end
 
     def parse(string)
