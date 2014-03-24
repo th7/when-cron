@@ -6,10 +6,11 @@ module When
     end
 
     def initialize(cron)
-      parse(cron)
+      @cron = cron
     end
 
     def ==(time)
+      @parsed ||= parse(@cron)
       matches = []
       matches << (@minute == time.min)
       matches << (@hour == time.hour)
