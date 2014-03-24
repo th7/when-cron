@@ -1,12 +1,8 @@
 module When
   class Cron
     def self.valid?(cron)
-      begin
-        new(cron)
-      rescue When::CronPart::InvalidString
-        return false
-      end
-      true
+      #checks for 5 space delimited groups of only * / 0-9 , -
+      !!(cron =~ /\A((\d|\*|\/|,|-)+ ){4}(\d|\*|\/|,|-)+\z/)
     end
 
     def initialize(cron)
