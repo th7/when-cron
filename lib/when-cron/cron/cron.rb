@@ -11,13 +11,12 @@ module When
 
     def ==(time)
       @parsed ||= parse(@cron)
-      matches = []
-      matches << (@minute == time.min)
-      matches << (@hour == time.hour)
-      matches << (@day == time.day)
-      matches << (@month == time.month)
-      matches << (@wday == time.wday)
-      matches.all?
+
+      @minute == time.min &&
+      @hour   == time.hour &&
+      @day    == time.day &&
+      @month  == time.month &&
+      @wday   == time.wday
     end
 
     def parse(string)
