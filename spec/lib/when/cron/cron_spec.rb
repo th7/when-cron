@@ -50,5 +50,17 @@ describe Cron do
         expect(cron == now - 3600).to eq false
       end
     end
+
+    context 'abbreviations' do
+      let(:cron) { Cron.new('* * * JUN SAT')}
+
+      it 'returns true for now' do
+        expect(cron == now).to eq true
+      end
+
+      it 'returns false for a day earlier' do
+        expect(cron == now - 3600 * 24).to eq false
+      end
+    end
   end
 end

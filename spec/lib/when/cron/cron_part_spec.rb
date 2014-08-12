@@ -143,4 +143,19 @@ describe CronPart do
       expect(cron_part == 8).to eq false
     end
   end
+
+  context 'abbreviations' do
+    CronPart::REMAP.each do |abbr, val|
+      cron_part = CronPart.new(abbr)
+
+      it "returns true for #{abbr} => #{val}" do
+        expect(cron_part == val.to_i).to eq true
+      end
+
+      it 'returns false for #{abbr} => #{val} +/- 1' do
+        expect(cron_part == val.to_i + 1).to eq false
+        expect(cron_part == val.to_i - 1).to eq false
+      end
+    end
+  end
 end

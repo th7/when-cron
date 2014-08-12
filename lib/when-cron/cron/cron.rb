@@ -28,10 +28,10 @@ module When
     def parse(string)
       strings = string.split(' ')
       @minute = CronPart.new(strings[0])
-      @hour = CronPart.new(strings[1])
-      @day = CronPart.new(strings[2])
-      @month = CronPart.new(strings[3])
-      @wday = CronPart.new(strings[4])
+      @hour   = CronPart.new(strings[1])
+      @day    = CronPart.new(strings[2])
+      @month  = CronPart.new(strings[3])
+      @wday   = CronPart.new(strings[4])
     end
   end
 end
