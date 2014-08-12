@@ -1,8 +1,7 @@
 module When
   class Cron
     def self.valid?(cron)
-      #checks for 5 space delimited groups of only * / 0-9 , -
-      !!(cron =~ /\A((\d|\*|\/|,|-)+ ){4}(\d|\*|\/|,|-)+\z/)
+      Validator.valid?(cron)
     end
 
     def self.valid(cron)
