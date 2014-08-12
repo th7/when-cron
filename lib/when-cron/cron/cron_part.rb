@@ -52,7 +52,7 @@ module When
     end
 
     def to_int(cron_part)
-      to_valid_int(REMAP[cron_part] || cron_part)
+      to_valid_int(REMAP[cron_part.upcase] || cron_part)
     end
 
     def to_valid_int(cron_part)
