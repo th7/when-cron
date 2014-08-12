@@ -22,11 +22,14 @@ Compare to anything that has an interface like Ruby's Time class with ==.
 
 ```When::Cron.new('* * * * *') == Time.now # => true```
 
-Only numbers or * are supported for values, only - , / are supported as operators.
+Numbers, *, and abbreviations (SUN, JAN, etc) are supported for values.
+
+, - and / are supported as operators.
 
 ```When::Cron.valid?('a b c d e') # => false```
+```When::Cron.valid('a b c d e') # => nil```
 
-When::Cron will allow nonsensical values (exa. 100 in the minute spot), but because the minute will never match, == will always return false.
+When::Cron will only validate your string when specifically asked. This allows faster analysis of previously validated strings, but might lead to silent failures for invalid strings.
 
 ```When::Cron.new('100 * * * *') == Time.now # => false```
 
