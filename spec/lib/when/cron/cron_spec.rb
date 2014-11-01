@@ -3,6 +3,10 @@ include When
 
 describe Cron do
   let(:now) { Time.new(2013, 6, 15, 12, 30, 30) }
+  let(:hour_earlier)  { now - 3600 }
+  let(:day_earlier)   { now - 3600 * 24 }
+  let(:week_earlier)  { now - 3600 * 24 * 7 }
+  let(:month_earlier) { now - 3600 * 24 * 31 }
 
   describe '.valid?' do
     it 'returns false for strings it cannot interpret' do
@@ -31,23 +35,92 @@ describe Cron do
   describe '#==' do
     context 'simple cron' do
       let(:cron) { Cron.new('30 12 15 6 6') }
+
       it 'returns true for now' do
         expect(cron == now).to eq true
       end
 
       it 'returns false for an hour earlier' do
-        expect(cron == now - 3600).to eq false
+        expect(cron == hour_earlier).to eq false
+      end
+
+      it 'returns true a week earlier' do
+        expect(cron == week_earlier).to eq true
+      end
+
+    end
+
+    context 'day of week and day of month' do
+      context 'day of week is wildcard' do
+        let(:cron) { Cron.new('30 12 15 * *') }
+
+        it 'returns true for now' do
+          expect(cron == now).to eq true
+        end
+
+        it 'returns false for an hour earlier' do
+          expect(cron == hour_earlier).to eq false
+        end
+
+        it 'returns false a week earlier' do
+          expect(cron == week_earlier).to eq false
+        end
+
+        it 'returns true a month earlier' do
+          expect(cron == month_earlier).to eq true
+        end
+      end
+
+      context 'day of month is wildcard' do
+        let(:cron) { Cron.new('30 12 * * 6') }
+
+        it 'returns true for now' do
+          expect(cron == now).to eq true
+        end
+
+        it 'returns false for an hour earlier' do
+          expect(cron == hour_earlier).to eq false
+        end
+
+        it 'returns true a week earlier' do
+          expect(cron == week_earlier).to eq true
+        end
+
+        it 'returns false a month earlier' do
+          expect(cron == month_earlier).to eq false
+        end
+      end
+
+      context 'neither is wildcard' do
+        let(:cron) { Cron.new('30 12 15 * 6') }
+
+        it 'returns true for now' do
+          expect(cron == now).to eq true
+        end
+
+        it 'returns false for an hour earlier' do
+          expect(cron == hour_earlier).to eq false
+        end
+
+        it 'returns true a week earlier' do
+          expect(cron == week_earlier).to eq true
+        end
+
+        it 'returns true a month earlier' do
+          expect(cron == month_earlier).to eq true
+        end
       end
     end
 
     context 'complex cron' do
       let(:cron) { Cron.new('25-35/5 */12 */5 4-8/2 6') }
+
       it 'returns true for now' do
         expect(cron == now).to eq true
       end
 
       it 'returns false for an hour earlier' do
-        expect(cron == now - 3600).to eq false
+        expect(cron == hour_earlier).to eq false
       end
     end
 
@@ -59,7 +132,7 @@ describe Cron do
       end
 
       it 'returns false for a day earlier' do
-        expect(cron == now - 3600 * 24).to eq false
+        expect(cron == day_earlier).to eq false
       end
     end
   end
