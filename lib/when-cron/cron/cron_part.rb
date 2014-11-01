@@ -35,6 +35,10 @@ module When
       @part == int
     end
 
+    def wildcard?
+      @part.kind_of? Wildcard
+    end
+
     private
 
     def parse(cron_part)

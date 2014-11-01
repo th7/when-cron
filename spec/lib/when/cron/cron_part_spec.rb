@@ -158,4 +158,22 @@ describe CronPart do
       end
     end
   end
+
+  describe '#wildcard?' do
+    context 'part is a wildcard' do
+      let(:cron_part) { CronPart.new('*') }
+
+      it 'returns true' do
+        expect(cron_part.wildcard?).to eq true
+      end
+    end
+
+    context 'part is not a wildcard' do
+      let(:cron_part) { CronPart.new('1') }
+
+      it 'returns false' do
+        expect(cron_part.wildcard?).to eq false
+      end
+    end
+  end
 end
