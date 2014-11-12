@@ -17,9 +17,16 @@ module When
 
       @minute == time.min &&
       @hour   == time.hour &&
-      @day    == time.day &&
       @month  == time.month &&
-      @wday   == time.wday
+      day_of_week_and_or_day_of_month?(time)
+    end
+
+    def day_of_week_and_or_day_of_month?(time)
+      if @day.wildcard? || @wday.wildcard?
+        @day == time.day && @wday == time.wday
+      else
+        @day == time.day || @wday == time.wday
+      end
     end
 
     private
