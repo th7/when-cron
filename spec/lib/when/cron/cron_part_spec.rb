@@ -54,6 +54,21 @@ describe CronPart do
     end
   end
 
+  context 'inverted range' do
+    let(:cron_part) { CronPart.new('5-3') }
+
+    it 'returns true for 2, 3, 5, or 6' do
+      expect(cron_part == 2).to eq true
+      expect(cron_part == 3).to eq true
+      expect(cron_part == 5).to eq true
+      expect(cron_part == 6).to eq true
+    end
+
+    it 'returns false for 4' do
+      expect(cron_part == 4).to eq false
+    end
+  end
+
   context 'wildcard' do
     let(:cron_part) { CronPart.new('*') }
 
@@ -77,6 +92,25 @@ describe CronPart do
       expect(cron_part == 1).to eq false
       expect(cron_part == 4).to eq false
       expect(cron_part == 8).to eq false
+    end
+  end
+
+  context 'list and inverted range' do
+    let(:cron_part) { CronPart.new('4,5,7-1') }
+
+    it 'returns true for 0, 1, 4, 5, 7, or 8' do
+      expect(cron_part == 0).to eq true
+      expect(cron_part == 1).to eq true
+      expect(cron_part == 4).to eq true
+      expect(cron_part == 5).to eq true
+      expect(cron_part == 7).to eq true
+      expect(cron_part == 8).to eq true
+    end
+
+    it 'returns false for 2, 3, or 6' do
+      expect(cron_part == 2).to eq false
+      expect(cron_part == 3).to eq false
+      expect(cron_part == 6).to eq false
     end
   end
 
@@ -119,6 +153,24 @@ describe CronPart do
       expect(cron_part == 16).to eq false
       expect(cron_part == 24).to eq false
       expect(cron_part == 43).to eq false
+      expect(cron_part == 51).to eq false
+    end
+  end
+
+  context 'inverted range interval' do
+    let(:cron_part) { CronPart.new('45-23/7') }
+
+    it 'returns true for 10, 17, 45, and 52' do
+      expect(cron_part == 45).to eq true
+      expect(cron_part == 52).to eq true
+      expect(cron_part == 10).to eq true
+      expect(cron_part == 17).to eq true
+    end
+
+    it 'returns false for 11, 16, 38, 51' do
+      expect(cron_part == 11).to eq false
+      expect(cron_part == 16).to eq false
+      expect(cron_part == 35).to eq false
       expect(cron_part == 51).to eq false
     end
   end
