@@ -4,7 +4,7 @@ include When
 describe CronPart do
   context 'invalid value' do
     it 'raises an error' do
-      expect { CronPart.new('a') }.to raise_error
+      expect { CronPart.new('a') }.to raise_error When::CronPart::InvalidString
     end
   end
 
