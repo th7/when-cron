@@ -14,5 +14,20 @@ describe CronRange do
       expect(cron_range == 4).to eq false
       expect(cron_range == 0).to eq false
     end
+
+    context 'an inverted range' do
+      let(:cron_range) { CronRange.new(3, 1) }
+
+      it 'returns true for values outside the range' do
+        expect(cron_range == 0).to eq true
+        expect(cron_range == 1).to eq true
+        expect(cron_range == 3).to eq true
+        expect(cron_range == 4).to eq true
+      end
+
+      it 'returns false if value is within range' do
+        expect(cron_range == 2).to eq false
+      end
+    end
   end
 end
